@@ -8,6 +8,10 @@ import { useForm } from '../../hooks/useForm';
 import { checkingAuthentication, startGoogleSignIn, startLoginWithEmailPass } from '../../store/auth/thunks';
 
 
+const formData = {
+  email: 'manuel@gmail.com',
+  password: 'aaa123'
+}
 
 export const LoginPage = () => {
 
@@ -15,10 +19,7 @@ export const LoginPage = () => {
   
   const dispatch = useDispatch();
 
-  const { email, password, onInputChange } = useForm({
-    email: 'manuel@gmail.com',
-    password: 'aaa123'
-  });
+  const { email, password, onInputChange } = useForm( formData );
 
   const isAuthenticating = useMemo( () => status === 'checking', [status]);
 
@@ -30,7 +31,6 @@ export const LoginPage = () => {
   }
 
   const onGoogleSignIn = () => {
-    console.log('google sign');
     dispatch( startGoogleSignIn() );
   }
 
